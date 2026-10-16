@@ -1,0 +1,731 @@
+/* ─────────────────────────────────────────────────────────────
+   Vora Mail · CLEAN ROOM — day and night themes.
+   Every selector is scoped under .cr.
+   ───────────────────────────────────────────────────────────── */
+
+.cr {
+  --bg: #f6f6f3;
+  --surface: #ffffff;
+  --ink: #0d0e12;
+  --muted: #585b63;
+  --line: #e3e3de;
+  --line-2: #d4d4ce;
+  --accent: #2b59ff;
+  --accent-h: #1737c9;
+  --ok: #0b8a5f;
+  --ok-ink: #067550;
+  --deny: #d93a3f;
+  --deny-ink: #b42a2f;
+  --irid-lin: linear-gradient(100deg, #9ee7ff, #c5b8ff 28%, #ffc4e6 52%, #fff0b3 76%, #b8ffe0);
+  --sans: "Switzer", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --shadow-sm: 0 1px 2px rgba(13, 14, 18, 0.05);
+  --shadow-md: 0 1px 2px rgba(13, 14, 18, 0.04), 0 12px 32px -18px rgba(13, 14, 18, 0.18);
+  --shadow-lg: 0 1px 2px rgba(13, 14, 18, 0.04), 0 40px 80px -40px rgba(13, 14, 18, 0.28);
+
+  /* Theme tokens. Channels (`r g b`) are used as rgb(var(--x) / alpha). */
+  --ink-rgb: 13 14 18;
+  --bg-rgb: 246 246 243;
+  --glass: 255 255 255;
+  --cool: 226 230 240;
+  --shade: 13 14 18;
+  --shade-a: 1;
+  --hi-a: 1;
+  --on-ink: #fff;
+  --on-accent: #fff;
+  --ink-2: #2d2f35;
+  --muted-2: #6c6f77;
+  --surface-2: #fafaf8;
+  --sunk: #efefea;
+  --sunk-2: #d9d9d3;
+  --line-3: #c3c3bc;
+  --deny-bg: #fff6f6;
+  --accent-bg: #f2f5ff;
+
+  min-height: 100vh;
+  transition: background-color 0.5s var(--ease), color 0.5s var(--ease);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: clip;
+}
+
+/* Night shift: the same room with the lights down. The film and the agent
+   glow; surfaces become smoked glass; shadows go deep instead of soft. */
+.cr[data-theme="night"] {
+  color-scheme: dark;
+  --bg: #0a0b0f;
+  --surface: #12141a;
+  --surface-2: #0f1116;
+  --sunk: #181b22;
+  --sunk-2: #2a2e37;
+  --ink: #eceef3;
+  --ink-2: #c9ccd4;
+  --muted: #9a9ea8;
+  --muted-2: #868a94;
+  --line: #20232b;
+  --line-2: #2b2f38;
+  --line-3: #3b404b;
+  --accent: #7d98ff;
+  --accent-h: #9bb0ff;
+  --accent-bg: #151b33;
+  --ok: #34c690;
+  --ok-ink: #3fd49c;
+  --deny: #ff6b6f;
+  --deny-ink: #ff8a8d;
+  --deny-bg: #2a1417;
+
+  --ink-rgb: 236 238 243;
+  --bg-rgb: 10 11 15;
+  --glass: 20 22 29;
+  --cool: 64 76 118;
+  --shade: 0 0 0;
+  --shade-a: 2.6;
+  --hi-a: 0.2;
+  --on-ink: #0a0b0f;
+  --on-accent: #07080c;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 16px 40px -18px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 50px 100px -40px rgba(0, 0, 0, 0.9);
+}
+
+.cr[data-theme="night"] ::selection {
+  background: rgba(125, 152, 255, 0.3);
+}
+
+.cr ::selection {
+  background: rgba(43, 89, 255, 0.16);
+}
+
+.cr :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.cr code,
+.cr pre {
+  font-family: var(--mono);
+  font-feature-settings: normal;
+  font-variant-ligatures: none;
+}
+
+.cr .cr-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cr .cr-skip {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+  z-index: 200;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--on-ink);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.cr .cr-skip:focus {
+  top: 12px;
+}
+
+.cr .cr-wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 48px);
+}
+
+.cr .cr-soft {
+  color: var(--muted);
+}
+
+/* ── reveal ── */
+
+.cr [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+}
+
+.cr [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── buttons & links ── */
+
+.cr .cr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.25s,
+    transform 0.25s var(--ease);
+}
+
+.cr .cr-btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / calc(0.22 * var(--hi-a))),
+    0 1px 2px rgb(var(--shade) / calc(0.18 * var(--shade-a))),
+    0 8px 22px -8px rgba(43, 89, 255, 0.6);
+}
+
+.cr .cr-btn--primary:hover {
+  background: var(--accent-h);
+  transform: translateY(-1px);
+}
+
+.cr .cr-btn--primary:disabled {
+  cursor: default;
+  transform: none;
+  background: var(--ok-ink);
+  box-shadow: none;
+}
+
+.cr .cr-btn--glass {
+  position: relative;
+  background: rgb(var(--glass) / 0.72);
+  border-color: var(--line-2);
+  color: var(--ink);
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: var(--shadow-sm);
+}
+
+.cr .cr-btn--glass:hover {
+  background: var(--surface);
+  border-color: var(--line-3);
+  transform: translateY(-1px);
+}
+
+.cr .cr-btn--sm {
+  height: 36px;
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.cr .cr-tlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.cr .cr-tlink:hover {
+  color: var(--accent-h);
+  text-decoration: underline;
+}
+
+.cr .cr-tlink .cr-arrow {
+  transition: transform 0.25s var(--ease);
+}
+
+.cr .cr-tlink:hover .cr-arrow {
+  transform: translateX(3px);
+}
+
+/* ── nav ── */
+
+.cr .cr-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgb(var(--bg-rgb) / 0.72);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.cr .cr-nav.is-scrolled {
+  border-bottom-color: var(--line);
+  background: rgb(var(--bg-rgb) / 0.82);
+}
+
+.cr .cr-nav__in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 64px;
+  max-width: 1440px;
+}
+
+.cr .cr-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.05em;
+  text-decoration: none;
+}
+
+/* Vora Mail's own pages: its app icon and a two-word name, so a little smaller and looser. */
+.cr .cr-logo--mail {
+  gap: 10px;
+  font-size: 19px;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.cr .cr-mark-mail {
+  display: block;
+  flex: none;
+}
+
+.cr .cr-nav__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ─────────────────────────── hero ─────────────────────────── */
+
+.cr .cr-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 14px;
+  margin-top: 32px;
+}
+
+.cr .cr-ctas .cr-tlink {
+  margin-left: 6px;
+}
+
+.cr .cr-fine {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 26px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cr .cr-fine {
+  gap: 4px 0;
+}
+
+.cr .cr-fine span:not(:last-child)::after {
+  content: "·";
+  margin: 0 10px;
+}
+
+/* ─────────────────────────── sections ─────────────────────────── */
+
+.cr .cr-sec {
+  position: relative;
+  padding-block: clamp(72px, 9vw, 124px);
+}
+
+.cr .cr-sechead {
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.cr .cr-sechead__bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cr .cr-sechead__n {
+  color: var(--ink);
+}
+
+.cr .cr-sechead__label {
+  color: var(--muted);
+}
+
+.cr .cr-h2 {
+  max-width: 17em;
+  font-size: clamp(2.3rem, 4.6vw, 4.3rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.cr .cr-h2 .cr-soft {
+  font-weight: 450;
+}
+
+.cr .cr-sub {
+  max-width: 40em;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: clamp(1.02rem, 1.15vw, 1.15rem);
+  line-height: 1.55;
+}
+
+/* ─────────────────────────── disclosure ─────────────────────────── */
+
+
+.cr .cr-disclose__sign {
+  position: relative;
+  flex: none;
+  width: 12px;
+  height: 12px;
+}
+
+.cr .cr-disclose__sign::before,
+.cr .cr-disclose__sign::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1.5px;
+  margin-top: -0.75px;
+  background: currentColor;
+  transition: transform 0.3s var(--ease);
+}
+
+.cr .cr-disclose__sign::after {
+  transform: rotate(90deg);
+}
+
+.cr [aria-expanded="true"] > .cr-disclose__sign::after {
+  transform: rotate(0deg);
+}
+
+/* ─────────────────────────── faq ─────────────────────────── */
+
+.cr .cr-faq {
+  padding-top: 8px;
+}
+
+.cr .cr-faq__item {
+  border-top: 1px solid var(--line-2);
+}
+
+.cr .cr-faq__item:last-child {
+  border-bottom: 1px solid var(--line-2);
+}
+
+.cr .cr-faq__item h3 {
+  margin: 0;
+  font: inherit;
+}
+
+.cr .cr-faq__item button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 24px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.cr .cr-faq__item button:hover {
+  color: var(--accent-h);
+}
+
+.cr .cr-faq__a p {
+  max-width: 38em;
+  padding: 0 0 24px;
+  color: var(--muted);
+  font-size: 15.5px;
+  line-height: 1.6;
+  animation: cr-rowin 0.4s var(--ease);
+}
+
+/* ─────────────────────────── footer ─────────────────────────── */
+
+.cr .cr-foot {
+  border-top: 1px solid var(--line);
+  padding: 36px 0 48px;
+}
+
+.cr .cr-foot__in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+}
+
+.cr .cr-foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.cr .cr-foot__links a {
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.cr .cr-foot__links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.cr .cr-foot__legal {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+}
+
+/* ─────────────────────────── keyframes ─────────────────────────── */
+
+@keyframes cr-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cr-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes cr-rowin {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ─────────────────────────── responsive ─────────────────────────── */
+
+@media (max-width: 640px) {
+
+  .cr .cr-ctas .cr-btn {
+    flex: 1 1 auto;
+  }
+
+  .cr .cr-ctas .cr-tlink {
+    margin-left: 0;
+  }
+
+  .cr .cr-foot__in {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ─────────────────────────── preferences ─────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .cr [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .cr .cr-nav,
+  .cr .cr-nav.is-scrolled {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .cr .cr-btn--glass {
+    background: var(--surface);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* ───────────────────────────── Night-shift switch ───────────────────────────── */
+
+.cr .cr-lights {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 10px 0 4px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.cr .cr-lights:hover {
+  border-color: var(--line-3);
+}
+
+.cr .cr-lights__track {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--sunk);
+  box-shadow: inset 0 1px 2px rgb(var(--shade) / calc(0.12 * var(--shade-a)));
+  overflow: hidden;
+}
+
+.cr .cr-lights__track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--irid-lin);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.cr .cr-lights.is-night .cr-lights__track::before {
+  opacity: 0.28;
+}
+
+.cr .cr-lights__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 3px rgb(var(--shade) / calc(0.25 * var(--shade-a)));
+  transition: transform 0.45s cubic-bezier(0.3, 1.4, 0.5, 1), background 0.3s;
+}
+
+.cr .cr-lights.is-night .cr-lights__knob {
+  transform: translateX(18px);
+  background: #0a0b0f;
+  box-shadow: 0 0 0 1px rgba(125, 152, 255, 0.5), 0 0 12px rgba(125, 152, 255, 0.55);
+}
+
+.cr .cr-lights svg {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: opacity 0.3s, transform 0.45s var(--ease);
+}
+
+.cr .cr-lights__sun {
+  color: #d68a00;
+}
+
+.cr .cr-lights__sun circle {
+  fill: currentColor;
+}
+
+.cr .cr-lights__moon {
+  color: #b8c6ff;
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.6);
+}
+
+.cr .cr-lights__moon path {
+  fill: currentColor;
+  stroke: none;
+}
+
+.cr .cr-lights.is-night .cr-lights__sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+.cr .cr-lights.is-night .cr-lights__moon {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 720px) {
+  .cr .cr-lights__label {
+    display: none;
+  }
+  .cr .cr-lights {
+    padding-right: 4px;
+  }
+}
+
+/* The circular reveal is drawn by JS on ::view-transition-new(root). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.cr[data-theme="night"] svg:has(> defs > linearGradient) {
+  filter: brightness(1.45) saturate(1.1);
+}

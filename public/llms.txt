@@ -1,0 +1,17 @@
+# Vora Mail
+
+> Vora Mail is a native GTK4, keyboard-first, local-first mail client for Linux (Arch and Omarchy first; also Ubuntu 24.04, Debian 13, Fedora). Status: closed beta 0.2.0-beta.1, released on GitHub for invited testers while the repository is private. Free, MIT or Apache-2.0.
+
+## What it does
+
+- No Vora server and no telemetry: mail goes between your provider (Gmail API or IMAP/SMTP over TLS) and your computer.
+- Mail database (SQLCipher) and downloaded attachments (XChaCha20-Poly1305) encrypted on disk; the key, passwords and tokens are kept in the system keyring.
+- Several accounts with All Inboxes, Smart Inbox tabs sorted by local rules, local search, rich-text compose with a local outbox.
+- Optional AI, off by default, with your own API key: a writing assistant (Anthropic) and Smart Inbox triage (TypeSafe). Mail read through Vora Mail's built-in Google sign-in is never sent to an AI service.
+
+## Links
+
+- Vora Mail: https://voramail.org/
+- Privacy policy: https://voramail.org/privacy
+- Legal notice: https://voramail.org/legal
+- Source: https://github.com/vorash/vora-mail
